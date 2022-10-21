@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>mining</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="https://twiisker.github.io/assets/css/main.css"/>
+    <link rel="canonical" href="https://twiisker.github.io/tags/mining/">
+    <noscript><link rel="stylesheet" href="https://twiisker.github.io/assets/css/noscript.css"/></noscript>
+    <style>
+        :root{--site-background : url("https://twiisker.github.io/images/bg.jpg")};
+    </style> 
+    
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+
+
+<body class="is-preload">
+
+    
+        <div id="wrapper">
+
+            
+                <header id="header">
+                    <div class="logo">
+                        <a href="/">
+                            <span class="icon">
+                                <img src="">
+                            </span>
+                        </a>
+                    </div>
+                    <div class="content">
+                        <div class="inner">
+                            <h1>mining</h1>
+                            
+                        </div>
+                    </div>
+                    <nav>
+                        <ul>
+                            
+                                
+                                    
+                                        <li>
+                                            <a href="#intro-data-warehouse-olap">Intro: Data-Warehouse, OLAP</a>
+                                        </li>
+                                    
+                                
+                            
+                        </ul>
+                    </nav>
+                </header>
+
+            
+                <div id="main">
+
+                    
+                        
+                            
+                                <article id="intro-data-warehouse-olap">
+                                    <h2 class="major">Intro: Data-Warehouse, OLAP</h2>
+                                    <span class="image main"><img src="" alt="" /></span>
+                                    <h2 id="heterogeneous-data-sources">Heterogeneous Data Sources</h2>
+<ul>
+<li><strong>Broad range of data sources</strong>
+<ul>
+<li>database systems(relational, object-relational, XML,..)</li>
+<li>Enterprise Resource Palnning Systems (ERP)</li>
+<li>external information sources (other companies, surveys, &hellip;)</li>
+<li>files (Excel, &hellip;)</li>
+<li>other documents (Word, WWW, &hellip;)</li>
+</ul>
+</li>
+<li><strong>Data Sources may differ in</strong>
+<ul>
+<li>schema</li>
+<li>coding schemes</li>
+<li>time frame (when is data sent)</li>
+<li>treatment of history</li>
+<li>aggregation level (in which time frames is data stored)</li>
+<li>DBMS (data model, vendor, version)</li>
+</ul>
+</li>
+</ul>
+<h2 id="data-warehouse">Data Warehouse</h2>
+
+
+<img src="/data_olap/DataWarehouse_hu1ecf6217d175202df1e9f14a1091f4aa_149588_700x0_resize_box_3.png" alt="">
+<h3 id="operational-vs-analytical-systems">Operational vs. Analytical Systems</h3>
+
+
+<img src="/data_olap/OperationalVsAnalyticalSystems_hu9ac3ef586a0dcbe4038ce78df7ffb445_80857_700x0_resize_box_3.png" alt="">
+<h3 id="important-terms">Important Terms</h3>
+<ul>
+<li>
+<p><strong><em>Data Warehousing</em></strong>
+is the process of integrating data from several source systems, storing it in the data warehouse database, and using this integrated data source.</p>
+</li>
+<li>
+<p><strong><em>Business Intelligence</em></strong>
+is a general term that covers technology and tools to turn the volume of data an organization collects and stores into meaningful information in order to achieve better and timelier business decisions.</p>
+</li>
+<li>
+<p><strong><em>Decision Support</em></strong>
+is a more general term referring to all kinds of analyses of existing data in order to make better decisions - like data mining, online analytic processing (OLAP), simulation, scenario analyses, ..</p>
+</li>
+</ul>
+<h3 id="fields-of-application">Fields of Application</h3>
+<ul>
+<li><strong>Business management</strong>
+<ul>
+<li>marketing</li>
+<li>enterprise information portals</li>
+<li>Customer Relationship Management (CRM)</li>
+<li>supply chain management</li>
+</ul>
+</li>
+<li><strong>Scientific applications</strong>
+<ul>
+<li>empirical studies, e.g. erath observation, enviromental studies</li>
+<li>statistical and scientific databases (SSDB)</li>
+</ul>
+</li>
+<li><strong>Engineering applications</strong>
+<ul>
+<li>analyzing the reliability of products</li>
+<li>analyzing substances and material</li>
+</ul>
+</li>
+</ul>
+<h2 id="introduction-to-services">Introduction to Services</h2>
+<ul>
+<li>A <strong>repeatable business task</strong> - e.g. check customer credit, open new account</li>
+<li>Discretely defined <strong>set</strong> of contiguous and autonomous business or technical <strong>functionality</strong></li>
+<li>A <strong>function</strong> provided at a network address</li>
+<li>A mechanism to enable access to capabilities, which is
+provided using a prescribed interface and is exercised consistent with constraints and
+policies as specified by the service description</li>
+</ul>
+<h2 id="introduction-to-soa">Introduction to SOA</h2>
+
+
+<img src="/data_olap/SOA_huf7e48f68e3d17a253a4a8fe303defccb_30481_700x0_resize_box_3.png" alt="">
+<ul>
+<li>An <strong>IT architectural style</strong> that supports integrating your <strong>business as linked services</strong></li>
+<li>A method for systems development and integration where functionality is grouped
+around business processes and packaged as interoperable services</li>
+<li>An architectural style to realize service-oriented computing</li>
+<li>A paradigm for organizing and utilizing distributed capabilities that may be under
+the control of different ownership domains</li>
+</ul>
+<h2 id="information-services">Information Services</h2>
+<ul>
+<li>
+<p><strong>Service-oriented Architecture</strong></p>
+<blockquote>
+<p>You will waste your investment in SOA unless you have enterprise information that SOA can exploit.&quot; (Gartner, 2005)</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Information Service</strong></p>
+<ul>
+<li><strong>Definition:</strong> Every capability needed to understand, cleanse, integrate and deliver information across heterogeneous systems</li>
+<li><strong>Is:</strong> Data Storage + Retrieval (and crunching)</li>
+<li><strong>Goal:</strong> services that provide ==accurate, consistent, integrated information== to business processes and people</li>
+<li><strong>Starting point:</strong> existing legacy, inconsistent &amp; divers data</li>
+<li><strong>Approach for Information as a Service</strong>
+<ul>
+<li>Exposing application logic as services</li>
+<li>Data is only accessible trough the corresponding application logic</li>
+<li>If needed: Mediation (brokering) and archestration (workflow) of application logic</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Classification Criteria</strong></p>
+<ul>
+<li>Level of abstraction
+<ul>
+<li>Plain source data (SQL, ..) or meta data</li>
+<li>Integrated data (data/information integration, ETL,&hellip;)</li>
+<li>Interpreted data (BI, text analytics, contents extraction)</li>
+<li>Application data (CRM, ..)</li>
+</ul>
+</li>
+<li>Range
+<ul>
+<li>Intranet</li>
+<li>Internet</li>
+</ul>
+</li>
+<li>Source
+<ul>
+<li>Single or multiple sources</li>
+<li>Homogeneous or heterogeneous</li>
+</ul>
+</li>
+<li>Provisioning of the service
+<ul>
+<li>Proprietary service</li>
+<li>Web/SOA service</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="cloud-computing">Cloud Computing</h2>
+<blockquote>
+<p>“Cloud Computing is a style of computing where massive scalable IT-enabled capabilities are delivered as a service to external customers using Internet technologies.” (Gartner)</p>
+</blockquote>
+<ul>
+<li><strong>Business properties of Cloud Computing</strong>
+<ul>
+<li>No startup (hardware) cost</li>
+<li>Pay per use</li>
+</ul>
+</li>
+<li><strong>Technical Properties</strong>
+<ul>
+<li>simple, easy programming model</li>
+<li>scalability, reliability, administration easy possible</li>
+<li>Minimum TCO -&gt; Autonomic/Cloud, Multi-tenancy</li>
+</ul>
+</li>
+</ul>
+
+
+<img src="/data_olap/CloudComputing_hu647b4a09fb3eff4a9aa249a47d1dad0e_238511_700x0_resize_box_3.png" alt="">
+
+                                </article>
+                            
+                        
+                    
+
+                </div>
+
+                
+<footer id="footer">
+    <p class="copyright">&copy; Design: <a href="https://github.com/d-asnaghi">d-asnaghi</a> and <a href="https://html5up.net">HTML5 UP</a>.</p>
+</footer>
+
+        </div>
+
+    
+    <div id="bg"></div>
+
+</body>
+
+
+    
+    <script src=https://twiisker.github.io/assets/js/jquery.min.js></script>
+    <script src=https://twiisker.github.io/assets/js/browser.min.js></script>
+    <script src=https://twiisker.github.io/assets/js/breakpoints.min.js></script>
+    <script src=https://twiisker.github.io/assets/js/util.js></script>
+    <script src=https://twiisker.github.io/assets/js/main.js></script>
+
+</html>

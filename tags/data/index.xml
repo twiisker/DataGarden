@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Data Garden</title>
-    <link>https://twiisker.github.io/</link>
-    <description>Recent content on Data Garden</description>
+    <title>data on Data Garden</title>
+    <link>https://twiisker.github.io/tags/data/</link>
+    <description>Recent content in data on Data Garden</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 21 Oct 2022 21:01:42 +0200</lastBuildDate><atom:link href="https://twiisker.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 21 Oct 2022 21:01:42 +0200</lastBuildDate><atom:link href="https://twiisker.github.io/tags/data/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Intro: Data-Warehouse, OLAP</title>
       <link>https://twiisker.github.io/post/introdataolap/</link>

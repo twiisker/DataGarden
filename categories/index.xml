@@ -5,6 +5,25 @@
     <link>https://twiisker.github.io/categories/</link>
     <description>Recent content in Categories on Data Garden</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://twiisker.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Fri, 21 Oct 2022 21:01:42 +0200</lastBuildDate><atom:link href="https://twiisker.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>intro</title>
+      <link>https://twiisker.github.io/categories/intro/</link>
+      <pubDate>Fri, 21 Oct 2022 21:01:42 +0200</pubDate>
+      
+      <guid>https://twiisker.github.io/categories/intro/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>introduction</title>
+      <link>https://twiisker.github.io/categories/introduction/</link>
+      <pubDate>Fri, 21 Oct 2022 21:01:42 +0200</pubDate>
+      
+      <guid>https://twiisker.github.io/categories/introduction/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
