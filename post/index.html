@@ -54,6 +54,22 @@
                                     
                                 
                             
+                                
+                                    
+                                        <li>
+                                            <a href="#datawarehouse-architecture">DataWarehouse-Architecture</a>
+                                        </li>
+                                    
+                                
+                            
+                                
+                                    
+                                        <li>
+                                            <a href="#sw50cm86ifbhcmfsbgvsaxtdphq">Intro: Parallelität</a>
+                                        </li>
+                                    
+                                
+                            
                         </ul>
                     </nav>
                 </header>
@@ -64,17 +80,640 @@
                     
                         
                             
+                                <article id="sw50cm86ifbhcmfsbgvsaxtdphq">
+                                    <h2 class="major">Intro: Parallelität</h2>
+                                    <span class="image main"><img src="" alt="" /></span>
+                                    <h1 id="parallele-abläufe-in-anwenungen">Parallele Abläufe in Anwenungen</h1>
+<p>Prozesse technischer, geschäftlicher und privater Art beinhalten meist parallele Abläufe</p>
+<ul>
+<li>Logistik, Produktion, Verwaltung</li>
+<li>Fahrzeugsteuerung, intelligente Energieversorgung</li>
+<li>Navigation, Verkehrsleitung</li>
+</ul>
+<blockquote>
+<p>Wie können Programme solche parallele Abläufe unterstützen?</p>
+</blockquote>
+<p>Diese Programme müssen verschiedene Aktivitäten gleichzeitig ausführen können.
+Beispiel: Logistik - &ldquo;Entladen und Einlagern&rdquo;</p>
+<ul>
+<li>Navigation des LKWs zur Rampe</li>
+<li>Automatisches Entladen der Ware</li>
+<li>Automatisches Erfassung der Ware (RFID)</li>
+<li>Automatische Einlagerung der Ware (Transportroboter)</li>
+</ul>
+<blockquote>
+<p>Innerhalb der Aktivität &ldquo;Entladen und Einlagern&rdquo; gibt es (parallele) Prozesse, die Synchronisation erfordern.</p>
+</blockquote>
+<blockquote>
+<p>Mehrere Instanzen von &ldquo;Entladen und EInlagern&rdquo; können (müssen) parallel Ablaufen.</p>
+</blockquote>
+<h1 id="rechnersysteme-mit-mehreren-prozessoren">Rechnersysteme mit mehreren Prozessoren</h1>
+<blockquote>
+<p>Wie können Programme das Potential von <strong>Mehrkern-Prozessoren / Multiprozessor-Systemen / Verteilte System</strong> nutzen?</p>
+</blockquote>
+<h1 id="nebenläufigkeit">Nebenläufigkeit</h1>
+<h2 id="begriff-der-nebenläufigkeit">Begriff der Nebenläufigkeit</h2>
+<p>(engl. Concurrency)</p>
+<blockquote>
+<p>Eigenschaft eines Systems, in dem verschiedene Aktivitäten gleichzeitig ausgeführt werden können.</p>
+</blockquote>
+<p>Die Aktivitäten können nur gleichzeitig ausgeführt werden, wenn zwischen ihnen <strong><em>keine kausale</em></strong> Abhängigkeit besteht.</p>
+<p><em>Beispiel:</em> Einlagern einer Ware hängt <strong>kausal</strong> vom Ausladen ab.</p>
+<h4 id="nebenläufigkeit-im-alltag">Nebenläufigkeit im Alltag</h4>
+<p>Frühstück:
+<strong>sequentielle Ausführung</strong>
+
+
+<img src="/sys_kon/Sequentiell_hu8b34c0e731b8b2e4fb1dc9ff37e95605_22689_600x0_resize_q90_box_3.png" alt="">
+<strong>nebenläufige Ausführung</strong>
+
+
+<img src="/sys_kon/Parallel_huc5d88f940bcc7aa8e25ed4907b61b939_20771_600x0_resize_q90_box_3.png" alt=""></p>
+<h2 id="nebenläufigkeit-in-technischen-systemen">Nebenläufigkeit in technischen Systemen</h2>
+<ul>
+<li>Tempomat
+<ul>
+<li>
+
+<img src="/sys_kon/CruiseControl_hu592c45c987639338344eab098242bb3a_14279_600x0_resize_q90_box_3.png" alt=""></li>
+<li>wird über Bedienfeld aktiviert / deaktiviert</li>
+<li>hält gewünschte Geschwindigkeit durch Steuerung des Motors (inc, dec)</li>
+<li>automatische deaktivierung sobald Bremse betätigt wird</li>
+<li>
+
+<img src="/sys_kon/Tempomat_hu9980f259d7ef7b05d34228697f199093_17477_600x0_resize_q90_box_3.png" alt=""></li>
+</ul>
+</li>
+</ul>
+<h1 id="systemarchitekturen">Systemarchitekturen</h1>
+<ul>
+<li>Einzelkernprozessoren
+<ul>
+<li>höchstens eine Instruktion zu jedem Zeitpunkt</li>
+<li>Quasiparallelität durch Multitasking:
+<ul>
+<li>Programm muss auf I/O warten, währenddessen kann Prozessor anderem Programm zugewiesen werden</li>
+<li>bessere Ausnutzung des Prozessors!</li>
+<li><a href="https://de.wikipedia.org/wiki/MIPS-Architektur">MIPS</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Instruktionen_pro_Sekunde">Instruktionen per Sekunde</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Mehrkernprozessoren
+<ul>
+<li>mehrere Prozessoren(Kerne) auf einem Chip</li>
+<li>nutzen gemeinsamen Speicher</li>
+<li>Echte Parallelität
+<ul>
+<li>plus Multitasking in jedem Kern</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Multiprozessoren-Systeme
+<ul>
+<li>mehrere Prozessoren, eventuell mit mehreren Kernen</li>
+<li>lokaler Speicher pro Prozessor</li>
+<li>häufig globaler Speicher, gemeinsam genutzt von allen Prozessoren</li>
+<li>Echte Parallelität
+<ul>
+<li>zwischen Prozessoren</li>
+<li>zwischen den Kernen eines Prozessors</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Verteilte Systeme
+<ul>
+<li>Menge von Knoten</li>
+<li>Ein-/Mehrkernprozessor</li>
+<li>Multiprozessor</li>
+</ul>
+</li>
+<li>kein gemeinsamer Speicher zwischen den Knoten</li>
+<li>Rechnernetz ermöglicht Kommunikation zwischen Knoten</li>
+<li>Echte Parallelität
+<ul>
+<li>zwischen den Knoten</li>
+<li>Zwischen Prozessoren eines Knotens</li>
+<li>Zwischen Kernen eines Prozessors</li>
+</ul>
+</li>
+</ul>
+<h2 id="verarbeitungsmodelle">Verarbeitungsmodelle</h2>
+<p><em>Definieren die Grundprizipien, nach welchen die Verarbeitung erfolgt:</em></p>
+<ul>
+<li>beteiligte Komponenten und ihre funktionalen Rollen</li>
+<li>Kommunikationsmuster zwischen den Komponenten</li>
+</ul>
+<p><strong>Wichtige Modelle:</strong></p>
+<ul>
+<li>Produzent / Konsument
+<ul>
+<li>Produzent: Erzeugt Daten und sendet zum Konsumenten</li>
+<li>Konsument: Erhält und verarbeitet Daten</li>
+<li>Interaktion Unidirektionale Kommunikation</li>
+<li>Beispiel: Videostream wird von einer Kamera zum Anzeigegerät übermittelt.</li>
+<li>
+
+<img src="/sys_kon/Prod_Kons_hu09a1d47c12708b99853785e1166687be_11130_600x0_resize_q90_box_3.png" alt=""></li>
+</ul>
+</li>
+<li>Pipeline
+<ul>
+<li>verallgemeinerung des Produzent / Konsument - Modells</li>
+<li>dazwischenliegende Prozesse sind sowohl Produzent als auch Konsument</li>
+<li>Prozesse sind über unidirektionale Kommunikationskanäle verbunden</li>
+<li>Beispiel: Videostream wird von einer Kamera über Encoder und Decoder zum Anzeigegerät geschickt.</li>
+<li>
+
+<img src="/sys_kon/Pipeline_hu3c1d91d0081732fa245d3bad3bbbe481_8748_600x0_resize_q90_box_3.png" alt=""></li>
+</ul>
+</li>
+<li>Client / Server
+<ul>
+<li>Server: biete seine Dienste einer vorher unbekannten Anzahl Klienten an.</li>
+<li>Klient: nutz angebotenen Dienst</li>
+<li>Interaktion: Auftrag / Antwort</li>
+<li>Beispiele
+<ul>
+<li>Dateidienst(NFS, AFS)</li>
+<li>Verzeichnisdienst(DNS)</li>
+<li>WWW</li>
+<li>Suchmaschinen</li>
+</ul>
+</li>
+<li>Server können Klienten anderer Dienste sein</li>
+<li>
+
+<img src="/sys_kon/ServerAsClient_hu37c72013b8a06e613d47a054c68a8ce9_23050_600x0_resize_q90_box_3.png" alt=""></li>
+</ul>
+</li>
+<li>&hellip;</li>
+</ul>
+<h1 id="sequentielle-und-nebenläufige-programme">Sequentielle und Nebenläufige Programme</h1>
+<h3 id="sequentielles-programm">Sequentielles Programm:</h3>
+<blockquote>
+<p>Alle Instruktionen des Programms werden sequentiell ausgeführt.</p>
+</blockquote>
+<h3 id="nebenläufiges-programm--concurrent-programm">Nebenläufiges Programm / Concurrent Programm</h3>
+<blockquote>
+<p>Besteht aus einer Menge sequentiller Programme, die parallel ausgeführt werden können.</p>
+</blockquote>
+<h3 id="der-begriff">Der Begriff</h3>
+<ul>
+<li>&ldquo;parallel&rdquo; bezeichnet typischerweise echte Prarallelität</li>
+<li>&ldquo;nebenläufig&rdquo; bezeichnet mögliche Parallelität, d.h echte Parallelität und Quasiparallelität</li>
+</ul>
+<h2 id="vorteile-der-nebenläufigkeit">Vorteile der Nebenläufigkeit</h2>
+<ul>
+<li><strong>Ausnutzung mehrerer Prozessoren</strong>
+<ul>
+<li>sequentielle Programm kann bei 100 Prozessoren max. 1% der Rechenkapazität nutzen</li>
+<li>Nebenläufiges Programm kann potentiell gesamte Kapazität nutzen, d.h. verbesserter Durchsatz</li>
+<li><em>Beachte</em>: Selbst bei einem Einprozessor-System, lässt sich durch Quasi-Parallelität der Durchsatz deutlich erhöhen</li>
+</ul>
+</li>
+<li><strong>Einfache Modellierung</strong>
+<ul>
+<li>Reale Prozesse bestehen häufig aus nebenläufigen Aktivitäten</li>
+<li>&ldquo;Natürliche&rdquo; Modellierung des Prozesses durch ein nebenläufiges Programm, in dem die einzelne Aktivität durch sequentielle Programme realisiert werden.</li>
+</ul>
+</li>
+</ul>
+<h2 id="herausforderungen-der-nebenläufigkeit">Herausforderungen der Nebenläufigkeit</h2>
+<blockquote>
+<p>Nebenläufige Programme erfordern Kommunikation und Synchronisation zwischen Prozessen.</p>
+</blockquote>
+<ul>
+<li>Fehlerfreie und effiziente Synchronisation und Kommunikation sind schwierig!</li>
+<li>Probleme sind häufig situations- und/oder zeitabhängig
+<ul>
+<li>schwierig zu reproduzieren, diagnostizieren, korriegieren</li>
+</ul>
+</li>
+</ul>
+<p><strong>Beispiele:</strong></p>
+<ul>
+<li>Wettlaufsituation (Race Conditions)
+<ul>
+<li>wenn das Ergebnis einer Berechnung vom zeitlichen Verhalten einzelner Operationen abhängt</li>
+</ul>
+</li>
+<li>Verklemmung (Deadlocks)
+<ul>
+<li>wenn sich eine Menge von Prozessen zyklisch gegenseitig blockieren</li>
+</ul>
+</li>
+</ul>
+<h3 id="beispiel-kinokarten-problem">Beispiel: Kinokarten-Problem</h3>
+<p>nach Ben-David-Kolikant</p>
+<p><strong>Verkauf von Kinokarten</strong></p>
+<ul>
+<li>Verkauf am Schalter</li>
+<li>Kunde erhält nächstbesten verfügbaren Platz</li>
+<li>Reservierungssystem bestimmt Platz, reserviert diesen und druckt Kinokarte</li>
+</ul>
+<p><strong>Annahmen</strong></p>
+<ul>
+<li>Es gibt (zunächst) genau einen Kartenschalter pro Kino</li>
+<li>Jeder Kunde kauft ein Ticket</li>
+</ul>
+
+
+<img src="/sys_kon/KinoKarten_slow_hueb12273da44b3bce47554159a49dc05f_118467_600x0_resize_q90_box_3.png" alt="">
+<p><strong>Eröffnung eines weiteren Kartenschalters wegen zu langer Wartezeiten</strong></p>
+<ul>
+<li>beide Schalter zur gleichen Zeit geöffnet</li>
+<li>jeder Schalter hat eigenen Prozessor und Drucker</li>
+<li>Prozessoren können miteinander kommunizieren
+<ul>
+<li>gemeinsamer Speicher oder Kommunikationsnetz</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Frage: Wie sieht eine Software-Lösung für zwei Schalter aus?</p>
+</blockquote>
+<p><strong><em>Schnelle Lösung:</em></strong>
+Installation des sequentiellen Programms auf beiden Prozessoren und Bereitstellung des Feldes <em>s</em> im gemeinsamen Speicher.</p>
+
+
+<img src="/sys_kon/KinoKarten_quick_hu92eeb96b6b777c3d8e7d12351348b71e_136635_600x0_resize_q90_box_3.png" alt="">
+
+                                </article>
+                            
+                        
+                    
+                        
+                            
+                                <article id="datawarehouse-architecture">
+                                    <h2 class="major">DataWarehouse-Architecture</h2>
+                                    <span class="image main"><img src="" alt="" /></span>
+                                    <h2 id="data-flow">Data Flow</h2>
+<blockquote>
+<p>Reference Architecture</p>
+</blockquote>
+
+
+<img src="/data_olap/DataFlow_hud12083f4773c6110c36181fd760a6217_197162_600x0_resize_q90_box_3.png" alt="">
+<ul>
+<li>
+<p>Service may be available in the Core Data Warehouse</p>
+</li>
+<li>
+<p>Data Mart: small portion of the Warehouse, to organize small portions</p>
+</li>
+<li>
+<p>DataWarehouse Manager:</p>
+<ul>
+<li>allows acces to end user</li>
+<li>controls <strong>extraction, transformation, load, monitor</strong></li>
+</ul>
+</li>
+<li>
+<p>Metadata-Manager</p>
+<ul>
+<li>if sth is added to the source, metadata needs to be added as well</li>
+<li>needed for transformation</li>
+</ul>
+</li>
+</ul>
+<h1 id="basic-elements">Basic Elements</h1>
+<h2 id="source-systems">Source Systems</h2>
+<ul>
+<li>Characterisitcs
+<ul>
+<li>narrow queries</li>
+<li>no broad queries as in DW</li>
+<li>little historical data</li>
+<li>dimensions differ from other legacy systems</li>
+<li>use of keys to make certain things unique (product, customer,&hellip;)</li>
+</ul>
+</li>
+<li>Selection Criteria
+<ul>
+<li>purpose of the DW; what is the goal?</li>
+<li>quality of data sources; if data is missing certain actions are not possible!</li>
+<li>availability of data sources; not everything is available due to technical/organizational issues</li>
+<li>cost(internal / external data)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Quality of Data, may not be good enough to answer the given problem/question</p>
+</blockquote>
+<h2 id="classification-of-data-sources">Classification of Data Sources</h2>
+
+
+<img src="/data_olap/DataSources_hu33ce9749f7f6f3832bef6b4259a6a5fa_107852_600x0_resize_q90_box_3.png" alt="">
+<p>Selection of wanted content types: video/audio are huge
+Need of metadata</p>
+<h2 id="data-quality">Data Quality</h2>
+<p>
+
+<img src="/data_olap/DataQuality_hu62338c559c3e754a36b6d60299b31708_183397_600x0_resize_q90_box_3.png" alt="">
+If data is not &ldquo;okay&rdquo;, a lot of transformation is requierd &ndash;&gt; expensive, time</p>
+<h2 id="monitoring">Monitoring</h2>
+<blockquote>
+<p>Discover changes in data sources incrementally.</p>
+</blockquote>
+<ul>
+<li>Approaches (depends on source system)
+<ul>
+<li>Triggers (ON Update/Delete&hellip;..)</li>
+<li>Replication Mechanisms</li>
+<li>Log Entries</li>
+<li>Tiemstamp</li>
+</ul>
+</li>
+</ul>
+<h2 id="data-staging-area">Data Staging Area</h2>
+<blockquote>
+<p>The Data Staging Area (DSA) is a storage area and a set of processes that clean, transform, combine, deduplicate, household, archive, and prepare source data for use in the data warehouse.</p>
+</blockquote>
+<ul>
+<li>temporarily stored in staging area, before loaded in the warehouse</li>
+<li><strong>transformations</strong> are performed on DSA</li>
+<li>Preprocessing does <strong>not influence</strong> data sources or data warehouse</li>
+<li>DSA is <strong>central repository</strong> for ETL (Extraction, Transformation, Load)</li>
+</ul>
+<h2 id="extraction">Extraction</h2>
+<blockquote>
+<p>Transfers data from data source into the data staging area.</p>
+</blockquote>
+<ul>
+<li>Multiple extract types
+<ul>
+<li>periodic</li>
+<li>started by admin/user</li>
+<li>event-driven</li>
+<li>immediate after changes in data sources</li>
+</ul>
+</li>
+<li>Method depends on used monitoring strategy</li>
+<li>extracted subset of data sources and schedule of the extraction, depends on analysis</li>
+</ul>
+<h2 id="transformation">Transformation</h2>
+<blockquote>
+<p>Convert the data into something representable to the users and valuable to the business.</p>
+</blockquote>
+<ul>
+<li><strong>Structure and Content</strong>
+<ul>
+<li>denormalization, normalization (First Normal Form, Second NF, &hellip;)</li>
+<li>data type conversion (int -&gt; float)</li>
+<li>calculation, aggregation</li>
+<li>standardization of strings and date values (currency, data formats)</li>
+<li>conversion of measures (liters -&gt; gallons)</li>
+<li>cleansing (missing, wrong, inconsistent)
+<ul>
+<li>wrong/missing postcode</li>
+<li>use correct data and build from there</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="load">Load</h2>
+<blockquote>
+<p>Transfer data from the data staging area into the core data warehouse.</p>
+</blockquote>
+<ul>
+<li>Data in core data warehouse is <em>only added</em>, rarely replaced.
+<ul>
+<li>History of changes is stored</li>
+</ul>
+</li>
+<li>mainly based on bulk load tools of the DBMS</li>
+<li>Offline vs. Online Load
+<ul>
+<li>Online: DW is still in use while uploading.</li>
+</ul>
+</li>
+<li>Parallel load may be required
+<ul>
+<li>controlling relational dependencies(PK,FK, &hellip;)</li>
+</ul>
+</li>
+</ul>
+<h2 id="core-data-warehouse">Core Data Warehouse</h2>
+<blockquote>
+<p>Integrated data as basis for all kinds of analytic purposes.</p>
+</blockquote>
+<ul>
+<li>Characteristics
+<ul>
+<li>integrated view on all data sources (schema and data)</li>
+<li>integrates cleanses data from the DSA</li>
+<li>current and history data, granularity (lowest relevant granularity)</li>
+<li>no focus on specific type of analysis (in contrast to data mart)</li>
+<li>source for the data marts</li>
+<li>single point of truth!</li>
+</ul>
+</li>
+</ul>
+<h2 id="data-marts">Data Marts</h2>
+
+
+<img src="/data_olap/DataMart_huf9c145a276d5881ec2334ffade74ff9a_195711_600x0_resize_q90_box_3.png" alt="">
+<table>
+<thead>
+<tr>
+<th>dependent data marts</th>
+<th>independent data marts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data only for specific analysis / use cases</td>
+<td>load data from DSA to different Data Marts, instead of DW</td>
+</tr>
+<tr>
+<td></td>
+<td>each organization / user group has it&rsquo;s own data marts</td>
+</tr>
+<tr>
+<td></td>
+<td>all data marts are transformed into one DW</td>
+</tr>
+<tr>
+<td></td>
+<td>without any applied changes!</td>
+</tr>
+</tbody>
+</table>
+<h2 id="end-user-data-access">End User Data Access</h2>
+<blockquote>
+<p>Users access data in data marts using various types of analytic tools and aiming at analytic results of various complexity.</p>
+</blockquote>
+<p><strong>Analytic Results</strong></p>
+<ul>
+<li>Querying and Reporting</li>
+<li>OLAP</li>
+<li>Data Mining / Machine Learning / Pattern Recognition</li>
+</ul>
+<h2 id="metadata-repository">Metadata Repository</h2>
+<blockquote>
+<p>A repository is a shared database of information about engineering artifacts, such as software, documents, maps, information systems, and manufactured components and systems.</p>
+</blockquote>
+<p><strong>Functions</strong></p>
+<ul>
+<li>object management</li>
+<li>dynamic extensibility</li>
+<li>relationship management</li>
+<li>notification</li>
+<li>verion management / controll</li>
+<li>configuration management</li>
+</ul>
+<h2 id="metadat-in-dw">Metadat in DW</h2>
+
+
+<img src="/data_olap/Metadata_hu41900df48d61686aa74675a7bf648f24_236551_600x0_resize_q90_box_3.png" alt="">
+<table>
+<thead>
+<tr>
+<th>Criteria to identitfy important classes of Metadata</th>
+<th>Main Goals</th>
+<th>Usage of Metadata</th>
+<th>Provide Information for Users</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type of data</td>
+<td>support development &amp; operation of DW</td>
+<td>passive</td>
+<td>quality of data</td>
+</tr>
+<tr>
+<td>abstraction</td>
+<td>system integration</td>
+<td>active</td>
+<td>consistent terminology</td>
+</tr>
+<tr>
+<td>user</td>
+<td>processes for DW administration</td>
+<td>semi-active</td>
+<td>support for data analysis</td>
+</tr>
+<tr>
+<td>origins</td>
+<td>flexible application development</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>time</td>
+<td>access rights</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="types-of-architecture">Types of Architecture</h1>
+<h2 id="dw-architecute-according-to-kimball">DW Architecute according to Kimball</h2>
+
+
+<img src="/data_olap/DW_Kimball_hu746879bfc7055f5c6c41f7f40690ceba_209293_600x0_resize_q90_box_3.png" alt="">
+<blockquote>
+<p>Focused on Data Mart Technology.</p>
+</blockquote>
+<h2 id="architecture">Architecture</h2>
+<table>
+<thead>
+<tr>
+<th>Central Architecture</th>
+<th>Federal Architecture</th>
+<th>Tiered Architecture</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>only one data model</td>
+<td>logically consolidated</td>
+<td>physical central DW</td>
+</tr>
+<tr>
+<td>performance bottleneck</td>
+<td>separate physical DB that store detailed data</td>
+<td>seperate physical DB that store summarized data</td>
+</tr>
+<tr>
+<td>complex to build</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>easy to maintain</td>
+<td>faster response</td>
+<td>faster response</td>
+</tr>
+</tbody>
+</table>
+<h2 id="operational-data-store-ods">Operational Data Store (ODS)</h2>
+<p>ODS has taken many definitions:</p>
+<ol>
+<li>Point of integration for operational systems.
+<ul>
+<li>refreshed within seconds, after operational data sources are updated</li>
+<li>very little transformations are performed</li>
+<li>Example
+<ul>
+<li>Banking environment where data sources keep individual accounts of a large multinational customer, and the ODS stores the total balance for this customer</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>True operational system separated from the data warehouse</p>
+</blockquote>
+<ol start="2">
+<li>Decision support access to operational data
+<ul>
+<li>integrated and transformed data are first accumulated and then periodically forwared to the ODS</li>
+<li>involves more integration and transformation processing</li>
+<li>Example
+<ul>
+<li>Bank that stores in the ODS an integrated individual bank account on a weekly basis</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>Part of the data warehouse or seperate system?</p>
+</blockquote>
+<h3 id="classes-of-operational-data-stores">Classes of Operational Data Stores</h3>
+
+
+<img src="/data_olap/ODS_hu4a42b8b493401816bea1a26bc2cd3019_241345_600x0_resize_q90_box_3.png" alt="">
+<ul>
+<li>class 2 is like independet DM</li>
+<li>class 3 similar to dependet DM</li>
+<li>class 4 combination of independent and dependent DM</li>
+</ul>
+
+                                </article>
+                            
+                        
+                    
+                        
+                            
                                 <article id="data-warehouse-design">
                                     <h2 class="major">Data Warehouse Design</h2>
                                     <span class="image main"><img src="" alt="" /></span>
                                     <h3 id="recap-database-design">Recap Database Design</h3>
 
 
-<img src="/data_olap/DB_Design_hud9faf11df4a17614118dbccfdca1c422_192144_300x0_resize_box_3.png" alt="">
+<img src="/data_olap/DB_Design_hud9faf11df4a17614118dbccfdca1c422_192144_600x0_resize_q90_box_3.png" alt="">
 <h2 id="dw-design-process">DW Design Process</h2>
 
 
-<img src="/data_olap/DW_Design_hud319cff9bea4497250950bbe94d52d56_193821_300x0_resize_box_3.png" alt="">
+<img src="/data_olap/DW_Design_hud319cff9bea4497250950bbe94d52d56_193821_600x0_resize_q90_box_3.png" alt="">
 <ul>
 <li>more or less same steps as DB-Design</li>
 <li>our topics: Dimensional Fact Model &amp; mUML &amp; starER</li>
@@ -151,11 +790,11 @@
 </ul>
 
 
-<img src="/data_olap/Cube_hu98bd4b5afe7a3aca7afe5b2bd80a3a36_125665_300x0_resize_box_3.png" alt="">
+<img src="/data_olap/Cube_hu98bd4b5afe7a3aca7afe5b2bd80a3a36_125665_600x0_resize_q90_box_3.png" alt="">
 <h2 id="data-cube">Data Cube</h2>
 
 
-<img src="/data_olap/DataCube_huffb0847b2446cde024488d3f98d4ce8a_196223_300x0_resize_box_3.png" alt="">
+<img src="/data_olap/DataCube_huffb0847b2446cde024488d3f98d4ce8a_196223_600x0_resize_q90_box_3.png" alt="">
 <blockquote>
 <p>Example: data cube for SALES modeled and viewed in multiple dimensions (item, time, location, supplier)</p>
 </blockquote>
@@ -224,7 +863,7 @@
 </ul>
 
 
-<img src="/data_olap/ConformedDimensions_huf4727717bf4a0fe592326c52647eb668_64048_300x0_resize_box_3.png" alt="">
+<img src="/data_olap/ConformedDimensions_huf4727717bf4a0fe592326c52647eb668_64048_600x0_resize_q90_box_3.png" alt="">
 <h1 id="dimensional-fact-model">Dimensional Fact Model</h1>
 <p>03.14</p>
 
@@ -262,11 +901,11 @@
 <h2 id="data-warehouse">Data Warehouse</h2>
 
 
-<img src="/data_olap/DataWarehouse_hu1ecf6217d175202df1e9f14a1091f4aa_149588_300x0_resize_box_3.png" alt="">
+<img src="/data_olap/DataWarehouse_hu1ecf6217d175202df1e9f14a1091f4aa_149588_600x0_resize_q90_box_3.png" alt="">
 <h3 id="operational-vs-analytical-systems">Operational vs. Analytical Systems</h3>
 
 
-<img src="/data_olap/OperationalVsAnalyticalSystems_hu9ac3ef586a0dcbe4038ce78df7ffb445_80857_300x0_resize_box_3.png" alt="">
+<img src="/data_olap/OperationalVsAnalyticalSystems_hu9ac3ef586a0dcbe4038ce78df7ffb445_80857_600x0_resize_q90_box_3.png" alt="">
 <h3 id="important-terms">Important Terms</h3>
 <ul>
 <li>
@@ -317,7 +956,7 @@ policies as specified by the service description</li>
 <h2 id="introduction-to-soa">Introduction to SOA</h2>
 
 
-<img src="/data_olap/SOA_huf7e48f68e3d17a253a4a8fe303defccb_30481_300x0_resize_box_3.png" alt="">
+<img src="/data_olap/SOA_huf7e48f68e3d17a253a4a8fe303defccb_30481_600x0_resize_q90_box_3.png" alt="">
 <ul>
 <li>An <strong>IT architectural style</strong> that supports integrating your <strong>business as linked services</strong></li>
 <li>A method for systems development and integration where functionality is grouped
@@ -403,7 +1042,7 @@ the control of different ownership domains</li>
 </ul>
 
 
-<img src="/data_olap/CloudComputing_hu647b4a09fb3eff4a9aa249a47d1dad0e_238511_300x0_resize_box_3.png" alt="">
+<img src="/data_olap/CloudComputing_hu647b4a09fb3eff4a9aa249a47d1dad0e_238511_600x0_resize_q90_box_3.png" alt="">
 
                                 </article>
                             

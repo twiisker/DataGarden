@@ -6,7 +6,21 @@
     <description>Recent content in Warehouse on Data Garden</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 27 Oct 2022 21:13:37 +0200</lastBuildDate><atom:link href="https://twiisker.github.io/categories/warehouse/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 27 Oct 2022 22:46:44 +0200</lastBuildDate><atom:link href="https://twiisker.github.io/categories/warehouse/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DataWarehouse-Architecture</title>
+      <link>https://twiisker.github.io/post/dw_architecture/</link>
+      <pubDate>Thu, 27 Oct 2022 22:46:44 +0200</pubDate>
+      
+      <guid>https://twiisker.github.io/post/dw_architecture/</guid>
+      <description>Data Flow Reference Architecture
+Service may be available in the Core Data Warehouse
+Data Mart: small portion of the Warehouse, to organize small portions
+DataWarehouse Manager:
+allows acces to end user controls extraction, transformation, load, monitor Metadata-Manager
+if sth is added to the source, metadata needs to be added as well needed for transformation Basic Elements Source Systems Characterisitcs narrow queries no broad queries as in DW little historical data dimensions differ from other legacy systems use of keys to make certain things unique (product, customer,&amp;hellip;) Selection Criteria purpose of the DW; what is the goal?</description>
+    </item>
+    
     <item>
       <title>Data Warehouse Design</title>
       <link>https://twiisker.github.io/post/datawarehouse_design/</link>

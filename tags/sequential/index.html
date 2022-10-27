@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>sequential</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="https://twiisker.github.io/assets/css/main.css"/>
+    <link rel="canonical" href="https://twiisker.github.io/tags/sequential/">
+    <noscript><link rel="stylesheet" href="https://twiisker.github.io/assets/css/noscript.css"/></noscript>
+    <style>
+        :root{--site-background : url("https://twiisker.github.io/images/bg.jpg")};
+    </style> 
+    
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+
+
+<body class="is-preload">
+
+    
+        <div id="wrapper">
+
+            
+                <header id="header">
+                    <div class="logo">
+                        <a href="/">
+                            <span class="icon">
+                                <img src="">
+                            </span>
+                        </a>
+                    </div>
+                    <div class="content">
+                        <div class="inner">
+                            <h1>sequential</h1>
+                            
+                        </div>
+                    </div>
+                    <nav>
+                        <ul>
+                            
+                                
+                                    
+                                        <li>
+                                            <a href="#sw50cm86ifbhcmfsbgvsaxtdphq">Intro: Parallelität</a>
+                                        </li>
+                                    
+                                
+                            
+                        </ul>
+                    </nav>
+                </header>
+
+            
+                <div id="main">
+
+                    
+                        
+                            
+                                <article id="sw50cm86ifbhcmfsbgvsaxtdphq">
+                                    <h2 class="major">Intro: Parallelität</h2>
+                                    <span class="image main"><img src="" alt="" /></span>
+                                    <h1 id="parallele-abläufe-in-anwenungen">Parallele Abläufe in Anwenungen</h1>
+<p>Prozesse technischer, geschäftlicher und privater Art beinhalten meist parallele Abläufe</p>
+<ul>
+<li>Logistik, Produktion, Verwaltung</li>
+<li>Fahrzeugsteuerung, intelligente Energieversorgung</li>
+<li>Navigation, Verkehrsleitung</li>
+</ul>
+<blockquote>
+<p>Wie können Programme solche parallele Abläufe unterstützen?</p>
+</blockquote>
+<p>Diese Programme müssen verschiedene Aktivitäten gleichzeitig ausführen können.
+Beispiel: Logistik - &ldquo;Entladen und Einlagern&rdquo;</p>
+<ul>
+<li>Navigation des LKWs zur Rampe</li>
+<li>Automatisches Entladen der Ware</li>
+<li>Automatisches Erfassung der Ware (RFID)</li>
+<li>Automatische Einlagerung der Ware (Transportroboter)</li>
+</ul>
+<blockquote>
+<p>Innerhalb der Aktivität &ldquo;Entladen und Einlagern&rdquo; gibt es (parallele) Prozesse, die Synchronisation erfordern.</p>
+</blockquote>
+<blockquote>
+<p>Mehrere Instanzen von &ldquo;Entladen und EInlagern&rdquo; können (müssen) parallel Ablaufen.</p>
+</blockquote>
+<h1 id="rechnersysteme-mit-mehreren-prozessoren">Rechnersysteme mit mehreren Prozessoren</h1>
+<blockquote>
+<p>Wie können Programme das Potential von <strong>Mehrkern-Prozessoren / Multiprozessor-Systemen / Verteilte System</strong> nutzen?</p>
+</blockquote>
+<h1 id="nebenläufigkeit">Nebenläufigkeit</h1>
+<h2 id="begriff-der-nebenläufigkeit">Begriff der Nebenläufigkeit</h2>
+<p>(engl. Concurrency)</p>
+<blockquote>
+<p>Eigenschaft eines Systems, in dem verschiedene Aktivitäten gleichzeitig ausgeführt werden können.</p>
+</blockquote>
+<p>Die Aktivitäten können nur gleichzeitig ausgeführt werden, wenn zwischen ihnen <strong><em>keine kausale</em></strong> Abhängigkeit besteht.</p>
+<p><em>Beispiel:</em> Einlagern einer Ware hängt <strong>kausal</strong> vom Ausladen ab.</p>
+<h4 id="nebenläufigkeit-im-alltag">Nebenläufigkeit im Alltag</h4>
+<p>Frühstück:
+<strong>sequentielle Ausführung</strong>
+
+
+<img src="/sys_kon/Sequentiell_hu8b34c0e731b8b2e4fb1dc9ff37e95605_22689_600x0_resize_q90_box_3.png" alt="">
+<strong>nebenläufige Ausführung</strong>
+
+
+<img src="/sys_kon/Parallel_huc5d88f940bcc7aa8e25ed4907b61b939_20771_600x0_resize_q90_box_3.png" alt=""></p>
+<h2 id="nebenläufigkeit-in-technischen-systemen">Nebenläufigkeit in technischen Systemen</h2>
+<ul>
+<li>Tempomat
+<ul>
+<li>
+
+<img src="/sys_kon/CruiseControl_hu592c45c987639338344eab098242bb3a_14279_600x0_resize_q90_box_3.png" alt=""></li>
+<li>wird über Bedienfeld aktiviert / deaktiviert</li>
+<li>hält gewünschte Geschwindigkeit durch Steuerung des Motors (inc, dec)</li>
+<li>automatische deaktivierung sobald Bremse betätigt wird</li>
+<li>
+
+<img src="/sys_kon/Tempomat_hu9980f259d7ef7b05d34228697f199093_17477_600x0_resize_q90_box_3.png" alt=""></li>
+</ul>
+</li>
+</ul>
+<h1 id="systemarchitekturen">Systemarchitekturen</h1>
+<ul>
+<li>Einzelkernprozessoren
+<ul>
+<li>höchstens eine Instruktion zu jedem Zeitpunkt</li>
+<li>Quasiparallelität durch Multitasking:
+<ul>
+<li>Programm muss auf I/O warten, währenddessen kann Prozessor anderem Programm zugewiesen werden</li>
+<li>bessere Ausnutzung des Prozessors!</li>
+<li><a href="https://de.wikipedia.org/wiki/MIPS-Architektur">MIPS</a></li>
+<li><a href="https://de.wikipedia.org/wiki/Instruktionen_pro_Sekunde">Instruktionen per Sekunde</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Mehrkernprozessoren
+<ul>
+<li>mehrere Prozessoren(Kerne) auf einem Chip</li>
+<li>nutzen gemeinsamen Speicher</li>
+<li>Echte Parallelität
+<ul>
+<li>plus Multitasking in jedem Kern</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Multiprozessoren-Systeme
+<ul>
+<li>mehrere Prozessoren, eventuell mit mehreren Kernen</li>
+<li>lokaler Speicher pro Prozessor</li>
+<li>häufig globaler Speicher, gemeinsam genutzt von allen Prozessoren</li>
+<li>Echte Parallelität
+<ul>
+<li>zwischen Prozessoren</li>
+<li>zwischen den Kernen eines Prozessors</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Verteilte Systeme
+<ul>
+<li>Menge von Knoten</li>
+<li>Ein-/Mehrkernprozessor</li>
+<li>Multiprozessor</li>
+</ul>
+</li>
+<li>kein gemeinsamer Speicher zwischen den Knoten</li>
+<li>Rechnernetz ermöglicht Kommunikation zwischen Knoten</li>
+<li>Echte Parallelität
+<ul>
+<li>zwischen den Knoten</li>
+<li>Zwischen Prozessoren eines Knotens</li>
+<li>Zwischen Kernen eines Prozessors</li>
+</ul>
+</li>
+</ul>
+<h2 id="verarbeitungsmodelle">Verarbeitungsmodelle</h2>
+<p><em>Definieren die Grundprizipien, nach welchen die Verarbeitung erfolgt:</em></p>
+<ul>
+<li>beteiligte Komponenten und ihre funktionalen Rollen</li>
+<li>Kommunikationsmuster zwischen den Komponenten</li>
+</ul>
+<p><strong>Wichtige Modelle:</strong></p>
+<ul>
+<li>Produzent / Konsument
+<ul>
+<li>Produzent: Erzeugt Daten und sendet zum Konsumenten</li>
+<li>Konsument: Erhält und verarbeitet Daten</li>
+<li>Interaktion Unidirektionale Kommunikation</li>
+<li>Beispiel: Videostream wird von einer Kamera zum Anzeigegerät übermittelt.</li>
+<li>
+
+<img src="/sys_kon/Prod_Kons_hu09a1d47c12708b99853785e1166687be_11130_600x0_resize_q90_box_3.png" alt=""></li>
+</ul>
+</li>
+<li>Pipeline
+<ul>
+<li>verallgemeinerung des Produzent / Konsument - Modells</li>
+<li>dazwischenliegende Prozesse sind sowohl Produzent als auch Konsument</li>
+<li>Prozesse sind über unidirektionale Kommunikationskanäle verbunden</li>
+<li>Beispiel: Videostream wird von einer Kamera über Encoder und Decoder zum Anzeigegerät geschickt.</li>
+<li>
+
+<img src="/sys_kon/Pipeline_hu3c1d91d0081732fa245d3bad3bbbe481_8748_600x0_resize_q90_box_3.png" alt=""></li>
+</ul>
+</li>
+<li>Client / Server
+<ul>
+<li>Server: biete seine Dienste einer vorher unbekannten Anzahl Klienten an.</li>
+<li>Klient: nutz angebotenen Dienst</li>
+<li>Interaktion: Auftrag / Antwort</li>
+<li>Beispiele
+<ul>
+<li>Dateidienst(NFS, AFS)</li>
+<li>Verzeichnisdienst(DNS)</li>
+<li>WWW</li>
+<li>Suchmaschinen</li>
+</ul>
+</li>
+<li>Server können Klienten anderer Dienste sein</li>
+<li>
+
+<img src="/sys_kon/ServerAsClient_hu37c72013b8a06e613d47a054c68a8ce9_23050_600x0_resize_q90_box_3.png" alt=""></li>
+</ul>
+</li>
+<li>&hellip;</li>
+</ul>
+<h1 id="sequentielle-und-nebenläufige-programme">Sequentielle und Nebenläufige Programme</h1>
+<h3 id="sequentielles-programm">Sequentielles Programm:</h3>
+<blockquote>
+<p>Alle Instruktionen des Programms werden sequentiell ausgeführt.</p>
+</blockquote>
+<h3 id="nebenläufiges-programm--concurrent-programm">Nebenläufiges Programm / Concurrent Programm</h3>
+<blockquote>
+<p>Besteht aus einer Menge sequentiller Programme, die parallel ausgeführt werden können.</p>
+</blockquote>
+<h3 id="der-begriff">Der Begriff</h3>
+<ul>
+<li>&ldquo;parallel&rdquo; bezeichnet typischerweise echte Prarallelität</li>
+<li>&ldquo;nebenläufig&rdquo; bezeichnet mögliche Parallelität, d.h echte Parallelität und Quasiparallelität</li>
+</ul>
+<h2 id="vorteile-der-nebenläufigkeit">Vorteile der Nebenläufigkeit</h2>
+<ul>
+<li><strong>Ausnutzung mehrerer Prozessoren</strong>
+<ul>
+<li>sequentielle Programm kann bei 100 Prozessoren max. 1% der Rechenkapazität nutzen</li>
+<li>Nebenläufiges Programm kann potentiell gesamte Kapazität nutzen, d.h. verbesserter Durchsatz</li>
+<li><em>Beachte</em>: Selbst bei einem Einprozessor-System, lässt sich durch Quasi-Parallelität der Durchsatz deutlich erhöhen</li>
+</ul>
+</li>
+<li><strong>Einfache Modellierung</strong>
+<ul>
+<li>Reale Prozesse bestehen häufig aus nebenläufigen Aktivitäten</li>
+<li>&ldquo;Natürliche&rdquo; Modellierung des Prozesses durch ein nebenläufiges Programm, in dem die einzelne Aktivität durch sequentielle Programme realisiert werden.</li>
+</ul>
+</li>
+</ul>
+<h2 id="herausforderungen-der-nebenläufigkeit">Herausforderungen der Nebenläufigkeit</h2>
+<blockquote>
+<p>Nebenläufige Programme erfordern Kommunikation und Synchronisation zwischen Prozessen.</p>
+</blockquote>
+<ul>
+<li>Fehlerfreie und effiziente Synchronisation und Kommunikation sind schwierig!</li>
+<li>Probleme sind häufig situations- und/oder zeitabhängig
+<ul>
+<li>schwierig zu reproduzieren, diagnostizieren, korriegieren</li>
+</ul>
+</li>
+</ul>
+<p><strong>Beispiele:</strong></p>
+<ul>
+<li>Wettlaufsituation (Race Conditions)
+<ul>
+<li>wenn das Ergebnis einer Berechnung vom zeitlichen Verhalten einzelner Operationen abhängt</li>
+</ul>
+</li>
+<li>Verklemmung (Deadlocks)
+<ul>
+<li>wenn sich eine Menge von Prozessen zyklisch gegenseitig blockieren</li>
+</ul>
+</li>
+</ul>
+<h3 id="beispiel-kinokarten-problem">Beispiel: Kinokarten-Problem</h3>
+<p>nach Ben-David-Kolikant</p>
+<p><strong>Verkauf von Kinokarten</strong></p>
+<ul>
+<li>Verkauf am Schalter</li>
+<li>Kunde erhält nächstbesten verfügbaren Platz</li>
+<li>Reservierungssystem bestimmt Platz, reserviert diesen und druckt Kinokarte</li>
+</ul>
+<p><strong>Annahmen</strong></p>
+<ul>
+<li>Es gibt (zunächst) genau einen Kartenschalter pro Kino</li>
+<li>Jeder Kunde kauft ein Ticket</li>
+</ul>
+
+
+<img src="/sys_kon/KinoKarten_slow_hueb12273da44b3bce47554159a49dc05f_118467_600x0_resize_q90_box_3.png" alt="">
+<p><strong>Eröffnung eines weiteren Kartenschalters wegen zu langer Wartezeiten</strong></p>
+<ul>
+<li>beide Schalter zur gleichen Zeit geöffnet</li>
+<li>jeder Schalter hat eigenen Prozessor und Drucker</li>
+<li>Prozessoren können miteinander kommunizieren
+<ul>
+<li>gemeinsamer Speicher oder Kommunikationsnetz</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Frage: Wie sieht eine Software-Lösung für zwei Schalter aus?</p>
+</blockquote>
+<p><strong><em>Schnelle Lösung:</em></strong>
+Installation des sequentiellen Programms auf beiden Prozessoren und Bereitstellung des Feldes <em>s</em> im gemeinsamen Speicher.</p>
+
+
+<img src="/sys_kon/KinoKarten_quick_hu92eeb96b6b777c3d8e7d12351348b71e_136635_600x0_resize_q90_box_3.png" alt="">
+
+                                </article>
+                            
+                        
+                    
+
+                </div>
+
+                
+<footer id="footer">
+    <p class="copyright">&copy; Design: <a href="https://github.com/d-asnaghi">d-asnaghi</a> and <a href="https://html5up.net">HTML5 UP</a>.</p>
+</footer>
+
+        </div>
+
+    
+    <div id="bg"></div>
+
+</body>
+
+
+    
+    <script src=https://twiisker.github.io/assets/js/jquery.min.js></script>
+    <script src=https://twiisker.github.io/assets/js/browser.min.js></script>
+    <script src=https://twiisker.github.io/assets/js/breakpoints.min.js></script>
+    <script src=https://twiisker.github.io/assets/js/util.js></script>
+    <script src=https://twiisker.github.io/assets/js/main.js></script>
+
+</html>

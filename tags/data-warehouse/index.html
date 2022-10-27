@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>data warehouse</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="https://twiisker.github.io/assets/css/main.css"/>
+    <link rel="canonical" href="https://twiisker.github.io/tags/data-warehouse/">
+    <noscript><link rel="stylesheet" href="https://twiisker.github.io/assets/css/noscript.css"/></noscript>
+    <style>
+        :root{--site-background : url("https://twiisker.github.io/images/bg.jpg")};
+    </style> 
+    
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+
+
+<body class="is-preload">
+
+    
+        <div id="wrapper">
+
+            
+                <header id="header">
+                    <div class="logo">
+                        <a href="/">
+                            <span class="icon">
+                                <img src="">
+                            </span>
+                        </a>
+                    </div>
+                    <div class="content">
+                        <div class="inner">
+                            <h1>data warehouse</h1>
+                            
+                        </div>
+                    </div>
+                    <nav>
+                        <ul>
+                            
+                                
+                                    
+                                        <li>
+                                            <a href="#datawarehouse-architecture">DataWarehouse-Architecture</a>
+                                        </li>
+                                    
+                                
+                            
+                        </ul>
+                    </nav>
+                </header>
+
+            
+                <div id="main">
+
+                    
+                        
+                            
+                                <article id="datawarehouse-architecture">
+                                    <h2 class="major">DataWarehouse-Architecture</h2>
+                                    <span class="image main"><img src="" alt="" /></span>
+                                    <h2 id="data-flow">Data Flow</h2>
+<blockquote>
+<p>Reference Architecture</p>
+</blockquote>
+
+
+<img src="/data_olap/DataFlow_hud12083f4773c6110c36181fd760a6217_197162_600x0_resize_q90_box_3.png" alt="">
+<ul>
+<li>
+<p>Service may be available in the Core Data Warehouse</p>
+</li>
+<li>
+<p>Data Mart: small portion of the Warehouse, to organize small portions</p>
+</li>
+<li>
+<p>DataWarehouse Manager:</p>
+<ul>
+<li>allows acces to end user</li>
+<li>controls <strong>extraction, transformation, load, monitor</strong></li>
+</ul>
+</li>
+<li>
+<p>Metadata-Manager</p>
+<ul>
+<li>if sth is added to the source, metadata needs to be added as well</li>
+<li>needed for transformation</li>
+</ul>
+</li>
+</ul>
+<h1 id="basic-elements">Basic Elements</h1>
+<h2 id="source-systems">Source Systems</h2>
+<ul>
+<li>Characterisitcs
+<ul>
+<li>narrow queries</li>
+<li>no broad queries as in DW</li>
+<li>little historical data</li>
+<li>dimensions differ from other legacy systems</li>
+<li>use of keys to make certain things unique (product, customer,&hellip;)</li>
+</ul>
+</li>
+<li>Selection Criteria
+<ul>
+<li>purpose of the DW; what is the goal?</li>
+<li>quality of data sources; if data is missing certain actions are not possible!</li>
+<li>availability of data sources; not everything is available due to technical/organizational issues</li>
+<li>cost(internal / external data)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Quality of Data, may not be good enough to answer the given problem/question</p>
+</blockquote>
+<h2 id="classification-of-data-sources">Classification of Data Sources</h2>
+
+
+<img src="/data_olap/DataSources_hu33ce9749f7f6f3832bef6b4259a6a5fa_107852_600x0_resize_q90_box_3.png" alt="">
+<p>Selection of wanted content types: video/audio are huge
+Need of metadata</p>
+<h2 id="data-quality">Data Quality</h2>
+<p>
+
+<img src="/data_olap/DataQuality_hu62338c559c3e754a36b6d60299b31708_183397_600x0_resize_q90_box_3.png" alt="">
+If data is not &ldquo;okay&rdquo;, a lot of transformation is requierd &ndash;&gt; expensive, time</p>
+<h2 id="monitoring">Monitoring</h2>
+<blockquote>
+<p>Discover changes in data sources incrementally.</p>
+</blockquote>
+<ul>
+<li>Approaches (depends on source system)
+<ul>
+<li>Triggers (ON Update/Delete&hellip;..)</li>
+<li>Replication Mechanisms</li>
+<li>Log Entries</li>
+<li>Tiemstamp</li>
+</ul>
+</li>
+</ul>
+<h2 id="data-staging-area">Data Staging Area</h2>
+<blockquote>
+<p>The Data Staging Area (DSA) is a storage area and a set of processes that clean, transform, combine, deduplicate, household, archive, and prepare source data for use in the data warehouse.</p>
+</blockquote>
+<ul>
+<li>temporarily stored in staging area, before loaded in the warehouse</li>
+<li><strong>transformations</strong> are performed on DSA</li>
+<li>Preprocessing does <strong>not influence</strong> data sources or data warehouse</li>
+<li>DSA is <strong>central repository</strong> for ETL (Extraction, Transformation, Load)</li>
+</ul>
+<h2 id="extraction">Extraction</h2>
+<blockquote>
+<p>Transfers data from data source into the data staging area.</p>
+</blockquote>
+<ul>
+<li>Multiple extract types
+<ul>
+<li>periodic</li>
+<li>started by admin/user</li>
+<li>event-driven</li>
+<li>immediate after changes in data sources</li>
+</ul>
+</li>
+<li>Method depends on used monitoring strategy</li>
+<li>extracted subset of data sources and schedule of the extraction, depends on analysis</li>
+</ul>
+<h2 id="transformation">Transformation</h2>
+<blockquote>
+<p>Convert the data into something representable to the users and valuable to the business.</p>
+</blockquote>
+<ul>
+<li><strong>Structure and Content</strong>
+<ul>
+<li>denormalization, normalization (First Normal Form, Second NF, &hellip;)</li>
+<li>data type conversion (int -&gt; float)</li>
+<li>calculation, aggregation</li>
+<li>standardization of strings and date values (currency, data formats)</li>
+<li>conversion of measures (liters -&gt; gallons)</li>
+<li>cleansing (missing, wrong, inconsistent)
+<ul>
+<li>wrong/missing postcode</li>
+<li>use correct data and build from there</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="load">Load</h2>
+<blockquote>
+<p>Transfer data from the data staging area into the core data warehouse.</p>
+</blockquote>
+<ul>
+<li>Data in core data warehouse is <em>only added</em>, rarely replaced.
+<ul>
+<li>History of changes is stored</li>
+</ul>
+</li>
+<li>mainly based on bulk load tools of the DBMS</li>
+<li>Offline vs. Online Load
+<ul>
+<li>Online: DW is still in use while uploading.</li>
+</ul>
+</li>
+<li>Parallel load may be required
+<ul>
+<li>controlling relational dependencies(PK,FK, &hellip;)</li>
+</ul>
+</li>
+</ul>
+<h2 id="core-data-warehouse">Core Data Warehouse</h2>
+<blockquote>
+<p>Integrated data as basis for all kinds of analytic purposes.</p>
+</blockquote>
+<ul>
+<li>Characteristics
+<ul>
+<li>integrated view on all data sources (schema and data)</li>
+<li>integrates cleanses data from the DSA</li>
+<li>current and history data, granularity (lowest relevant granularity)</li>
+<li>no focus on specific type of analysis (in contrast to data mart)</li>
+<li>source for the data marts</li>
+<li>single point of truth!</li>
+</ul>
+</li>
+</ul>
+<h2 id="data-marts">Data Marts</h2>
+
+
+<img src="/data_olap/DataMart_huf9c145a276d5881ec2334ffade74ff9a_195711_600x0_resize_q90_box_3.png" alt="">
+<table>
+<thead>
+<tr>
+<th>dependent data marts</th>
+<th>independent data marts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data only for specific analysis / use cases</td>
+<td>load data from DSA to different Data Marts, instead of DW</td>
+</tr>
+<tr>
+<td></td>
+<td>each organization / user group has it&rsquo;s own data marts</td>
+</tr>
+<tr>
+<td></td>
+<td>all data marts are transformed into one DW</td>
+</tr>
+<tr>
+<td></td>
+<td>without any applied changes!</td>
+</tr>
+</tbody>
+</table>
+<h2 id="end-user-data-access">End User Data Access</h2>
+<blockquote>
+<p>Users access data in data marts using various types of analytic tools and aiming at analytic results of various complexity.</p>
+</blockquote>
+<p><strong>Analytic Results</strong></p>
+<ul>
+<li>Querying and Reporting</li>
+<li>OLAP</li>
+<li>Data Mining / Machine Learning / Pattern Recognition</li>
+</ul>
+<h2 id="metadata-repository">Metadata Repository</h2>
+<blockquote>
+<p>A repository is a shared database of information about engineering artifacts, such as software, documents, maps, information systems, and manufactured components and systems.</p>
+</blockquote>
+<p><strong>Functions</strong></p>
+<ul>
+<li>object management</li>
+<li>dynamic extensibility</li>
+<li>relationship management</li>
+<li>notification</li>
+<li>verion management / controll</li>
+<li>configuration management</li>
+</ul>
+<h2 id="metadat-in-dw">Metadat in DW</h2>
+
+
+<img src="/data_olap/Metadata_hu41900df48d61686aa74675a7bf648f24_236551_600x0_resize_q90_box_3.png" alt="">
+<table>
+<thead>
+<tr>
+<th>Criteria to identitfy important classes of Metadata</th>
+<th>Main Goals</th>
+<th>Usage of Metadata</th>
+<th>Provide Information for Users</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type of data</td>
+<td>support development &amp; operation of DW</td>
+<td>passive</td>
+<td>quality of data</td>
+</tr>
+<tr>
+<td>abstraction</td>
+<td>system integration</td>
+<td>active</td>
+<td>consistent terminology</td>
+</tr>
+<tr>
+<td>user</td>
+<td>processes for DW administration</td>
+<td>semi-active</td>
+<td>support for data analysis</td>
+</tr>
+<tr>
+<td>origins</td>
+<td>flexible application development</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>time</td>
+<td>access rights</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="types-of-architecture">Types of Architecture</h1>
+<h2 id="dw-architecute-according-to-kimball">DW Architecute according to Kimball</h2>
+
+
+<img src="/data_olap/DW_Kimball_hu746879bfc7055f5c6c41f7f40690ceba_209293_600x0_resize_q90_box_3.png" alt="">
+<blockquote>
+<p>Focused on Data Mart Technology.</p>
+</blockquote>
+<h2 id="architecture">Architecture</h2>
+<table>
+<thead>
+<tr>
+<th>Central Architecture</th>
+<th>Federal Architecture</th>
+<th>Tiered Architecture</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>only one data model</td>
+<td>logically consolidated</td>
+<td>physical central DW</td>
+</tr>
+<tr>
+<td>performance bottleneck</td>
+<td>separate physical DB that store detailed data</td>
+<td>seperate physical DB that store summarized data</td>
+</tr>
+<tr>
+<td>complex to build</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>easy to maintain</td>
+<td>faster response</td>
+<td>faster response</td>
+</tr>
+</tbody>
+</table>
+<h2 id="operational-data-store-ods">Operational Data Store (ODS)</h2>
+<p>ODS has taken many definitions:</p>
+<ol>
+<li>Point of integration for operational systems.
+<ul>
+<li>refreshed within seconds, after operational data sources are updated</li>
+<li>very little transformations are performed</li>
+<li>Example
+<ul>
+<li>Banking environment where data sources keep individual accounts of a large multinational customer, and the ODS stores the total balance for this customer</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>True operational system separated from the data warehouse</p>
+</blockquote>
+<ol start="2">
+<li>Decision support access to operational data
+<ul>
+<li>integrated and transformed data are first accumulated and then periodically forwared to the ODS</li>
+<li>involves more integration and transformation processing</li>
+<li>Example
+<ul>
+<li>Bank that stores in the ODS an integrated individual bank account on a weekly basis</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>Part of the data warehouse or seperate system?</p>
+</blockquote>
+<h3 id="classes-of-operational-data-stores">Classes of Operational Data Stores</h3>
+
+
+<img src="/data_olap/ODS_hu4a42b8b493401816bea1a26bc2cd3019_241345_600x0_resize_q90_box_3.png" alt="">
+<ul>
+<li>class 2 is like independet DM</li>
+<li>class 3 similar to dependet DM</li>
+<li>class 4 combination of independent and dependent DM</li>
+</ul>
+
+                                </article>
+                            
+                        
+                    
+
+                </div>
+
+                
+<footer id="footer">
+    <p class="copyright">&copy; Design: <a href="https://github.com/d-asnaghi">d-asnaghi</a> and <a href="https://html5up.net">HTML5 UP</a>.</p>
+</footer>
+
+        </div>
+
+    
+    <div id="bg"></div>
+
+</body>
+
+
+    
+    <script src=https://twiisker.github.io/assets/js/jquery.min.js></script>
+    <script src=https://twiisker.github.io/assets/js/browser.min.js></script>
+    <script src=https://twiisker.github.io/assets/js/breakpoints.min.js></script>
+    <script src=https://twiisker.github.io/assets/js/util.js></script>
+    <script src=https://twiisker.github.io/assets/js/main.js></script>
+
+</html>
