@@ -13,9 +13,8 @@
       <pubDate>Thu, 27 Oct 2022 22:50:53 +0200</pubDate>
       
       <guid>https://twiisker.github.io/post/einf%C3%BChrung/</guid>
-      <description>Parallele Abläufe in Anwenungen Prozesse technischer, geschäftlicher und privater Art beinhalten meist parallele Abläufe
-Logistik, Produktion, Verwaltung Fahrzeugsteuerung, intelligente Energieversorgung Navigation, Verkehrsleitung Wie können Programme solche parallele Abläufe unterstützen?
-Diese Programme müssen verschiedene Aktivitäten gleichzeitig ausführen können. Beispiel: Logistik - &amp;ldquo;Entladen und Einlagern&amp;rdquo;
+      <description>Parallele Abläufe in Anwendungen Prozesse technischer, geschäftlicher und privater Art beinhalten meist parallele Abläufe
+Logistik, Produktion, Verwaltung Fahrzeugsteuerung, intelligente Energieversorgung Navigation, Verkehrsleitung Wie können Programme solche parallele Abläufe unterstützen? Diese Programme müssen verschiedene Aktivitäten gleichzeitig ausführen können. Beispiel: Logistik - &amp;ldquo;Entladen und Einlagern&amp;rdquo;
 Navigation des LKWs zur Rampe Automatisches Entladen der Ware Automatisches Erfassung der Ware (RFID) Automatische Einlagerung der Ware (Transportroboter) Innerhalb der Aktivität &amp;ldquo;Entladen und Einlagern&amp;rdquo; gibt es (parallele) Prozesse, die Synchronisation erfordern.</description>
     </item>
     
