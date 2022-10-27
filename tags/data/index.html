@@ -46,6 +46,14 @@
                                     
                                 
                             
+                                
+                                    
+                                        <li>
+                                            <a href="#data-warehouse-design">Data Warehouse Design</a>
+                                        </li>
+                                    
+                                
+                            
                         </ul>
                     </nav>
                 </header>
@@ -53,6 +61,176 @@
             
                 <div id="main">
 
+                    
+                        
+                            
+                                <article id="data-warehouse-design">
+                                    <h2 class="major">Data Warehouse Design</h2>
+                                    <span class="image main"><img src="" alt="" /></span>
+                                    <h3 id="recap-database-design">Recap Database Design</h3>
+
+
+<img src="/data_olap/DB_Design_hud9faf11df4a17614118dbccfdca1c422_192144_300x0_resize_box_3.png" alt="">
+<h2 id="dw-design-process">DW Design Process</h2>
+
+
+<img src="/data_olap/DW_Design_hud319cff9bea4497250950bbe94d52d56_193821_300x0_resize_box_3.png" alt="">
+<ul>
+<li>more or less same steps as DB-Design</li>
+<li>our topics: Dimensional Fact Model &amp; mUML &amp; starER</li>
+</ul>
+<h2 id="conceptual-design">Conceptual Design</h2>
+<blockquote>
+<p>Transformation of the semi-formal business requirements specification into a formalized conceptual multidimensional schema</p>
+</blockquote>
+<ul>
+<li>most produce a graphical multidimensional schema
+<ul>
+<li>Dimensional Fact Model, UML-based, starER</li>
+</ul>
+</li>
+<li>Conceptual DEsign based on
+<ul>
+<li>business requirement specification</li>
+<li>schema of operational systems</li>
+</ul>
+</li>
+<li>Process model to conceptual DW-Design
+<ul>
+<li>context definition of measures</li>
+<li>dimensional hierarchy design</li>
+<li>summarizability constraints</li>
+</ul>
+</li>
+</ul>
+<h2 id="logical-design">Logical Design</h2>
+<blockquote>
+<p>Convert the conceptual schema to a logical one with respect to the target data model.</p>
+</blockquote>
+<ul>
+<li>
+<p>based on</p>
+<ul>
+<li>conceptual diagrams</li>
+<li>summarizability constraints</li>
+<li>transformation rules</li>
+</ul>
+</li>
+<li>
+<p>Logical Data Models</p>
+<ul>
+<li>relational</li>
+<li>multidimensional</li>
+</ul>
+</li>
+</ul>
+<h2 id="physical-design">Physical Design</h2>
+<blockquote>
+<p>Physical implementation of the logical schemata with respect to the target data model.</p>
+</blockquote>
+<ul>
+<li>Considerations
+<ul>
+<li>indexing</li>
+<li>partitioning</li>
+<li>denormalization</li>
+<li>pre-aggregation</li>
+</ul>
+</li>
+</ul>
+<h1 id="multidimensional-model">Multidimensional Model</h1>
+<ul>
+<li>DW is based on a multidimensional data model, which views data in the form of <strong><em>data cube</em></strong></li>
+<li>allows data to <strong>viewed and modeled</strong> in multiple dimensions
+<ul>
+<li>Time (Year, Month, Week, Day)</li>
+<li>Location (Country, County, City)</li>
+<li>Product (Area, Group, Family, Article)</li>
+</ul>
+</li>
+</ul>
+
+
+<img src="/data_olap/Cube_hu98bd4b5afe7a3aca7afe5b2bd80a3a36_125665_300x0_resize_box_3.png" alt="">
+<h2 id="data-cube">Data Cube</h2>
+
+
+<img src="/data_olap/DataCube_huffb0847b2446cde024488d3f98d4ce8a_196223_300x0_resize_box_3.png" alt="">
+<blockquote>
+<p>Example: data cube for SALES modeled and viewed in multiple dimensions (item, time, location, supplier)</p>
+</blockquote>
+<ul>
+<li>if aggregated by a value; switch from 4-D to 3-D, 2-D, 1-D, 0-D
+<ul>
+<li>4-D is base</li>
+<li>0-D is apex; holds the highest-level summarization</li>
+</ul>
+</li>
+</ul>
+<h2 id="basic-elements-of-conceptual-model">Basic Elements of Conceptual Model</h2>
+<table>
+<thead>
+<tr>
+<th>Fact Data</th>
+<th>Attributes</th>
+<th>Qualities</th>
+<th>Dimensions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mostly numeric data (observed / measured)</td>
+<td>Describe dimension objects</td>
+<td>represent a state, status or mode</td>
+<td>strongly associated attributes</td>
+</tr>
+<tr>
+<td>Examples: tunrover/sales, number of pieces, ..</td>
+<td>Mostly text-based descriptions</td>
+<td>no aggregation (in contrast to Fact Data)</td>
+<td>5 to 20 attributes</td>
+</tr>
+<tr>
+<td></td>
+<td>Examples: product descriptions, customer profiles, addresses,..</td>
+<td>Examples: shipping mode, status, ..</td>
+<td>mostly hierarchical relationships</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>Examples: product info, customer info, time references</td>
+</tr>
+</tbody>
+</table>
+<h2 id="conformed-dimensions">Conformed Dimensions</h2>
+<blockquote>
+<p>A conformed dimension is a dimension that means the same thing with every possible fact to which it can be joined.</p>
+</blockquote>
+<ul>
+<li>is identically the same dimension in each data mart</li>
+<li>Conformed dimensions support
+<ul>
+<li>same dimensions in different fact schemata</li>
+<li>user interface and data content are consistent, whenever dimension is used</li>
+<li>consistent interpretation of attributes
+<ul>
+<li>therefore: rollups across data marts</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<img src="/data_olap/ConformedDimensions_huf4727717bf4a0fe592326c52647eb668_64048_300x0_resize_box_3.png" alt="">
+<h1 id="dimensional-fact-model">Dimensional Fact Model</h1>
+<p>03.14</p>
+
+                                </article>
+                            
+                        
                     
                         
                             
@@ -83,26 +261,12 @@
 </ul>
 <h2 id="data-warehouse">Data Warehouse</h2>
 
-<div class="picture">
-  
-    <picture>
-      <source media="(min-width: 535px)" data-original-set="Data_OLAP/DataWarehouse.png. 1x,Data_OLAP/DataWarehouse.png@2x. 2x">
-      <source media="(max-width: 534px)" data-original-set="Data_OLAP/DataWarehouse.png-sm. 1x, Data_OLAP/DataWarehouse.png-sm@2x. 2x">
-      <img data-original="Data_OLAP/DataWarehouse.png." data-original-set="Data_OLAP/DataWarehouse.png@2x. 2x" alt="">
-    </picture>
-  
-</div>
+
+<img src="/data_olap/DataWarehouse_hu1ecf6217d175202df1e9f14a1091f4aa_149588_300x0_resize_box_3.png" alt="">
 <h3 id="operational-vs-analytical-systems">Operational vs. Analytical Systems</h3>
 
-<div class="picture">
-  
-    <picture>
-      <source media="(min-width: 535px)" data-original-set="Data_OLAP/OperationalVsAnalyticalSystems.png. 1x,Data_OLAP/OperationalVsAnalyticalSystems.png@2x. 2x">
-      <source media="(max-width: 534px)" data-original-set="Data_OLAP/OperationalVsAnalyticalSystems.png-sm. 1x, Data_OLAP/OperationalVsAnalyticalSystems.png-sm@2x. 2x">
-      <img data-original="Data_OLAP/OperationalVsAnalyticalSystems.png." data-original-set="Data_OLAP/OperationalVsAnalyticalSystems.png@2x. 2x" alt="">
-    </picture>
-  
-</div>
+
+<img src="/data_olap/OperationalVsAnalyticalSystems_hu9ac3ef586a0dcbe4038ce78df7ffb445_80857_300x0_resize_box_3.png" alt="">
 <h3 id="important-terms">Important Terms</h3>
 <ul>
 <li>
@@ -152,15 +316,8 @@ policies as specified by the service description</li>
 </ul>
 <h2 id="introduction-to-soa">Introduction to SOA</h2>
 
-<div class="picture">
-  
-    <picture>
-      <source media="(min-width: 535px)" data-original-set="Data_OLAP/SOA.png. 1x,Data_OLAP/SOA.png@2x. 2x">
-      <source media="(max-width: 534px)" data-original-set="Data_OLAP/SOA.png-sm. 1x, Data_OLAP/SOA.png-sm@2x. 2x">
-      <img data-original="Data_OLAP/SOA.png." data-original-set="Data_OLAP/SOA.png@2x. 2x" alt="">
-    </picture>
-  
-</div>
+
+<img src="/data_olap/SOA_huf7e48f68e3d17a253a4a8fe303defccb_30481_300x0_resize_box_3.png" alt="">
 <ul>
 <li>An <strong>IT architectural style</strong> that supports integrating your <strong>business as linked services</strong></li>
 <li>A method for systems development and integration where functionality is grouped
@@ -245,15 +402,8 @@ the control of different ownership domains</li>
 </li>
 </ul>
 
-<div class="picture">
-  
-    <picture>
-      <source media="(min-width: 535px)" data-original-set="Data_OLAP/CloudComputing.png. 1x,Data_OLAP/CloudComputing.png@2x. 2x">
-      <source media="(max-width: 534px)" data-original-set="Data_OLAP/CloudComputing.png-sm. 1x, Data_OLAP/CloudComputing.png-sm@2x. 2x">
-      <img data-original="Data_OLAP/CloudComputing.png." data-original-set="Data_OLAP/CloudComputing.png@2x. 2x" alt="">
-    </picture>
-  
-</div>
+
+<img src="/data_olap/CloudComputing_hu647b4a09fb3eff4a9aa249a47d1dad0e_238511_300x0_resize_box_3.png" alt="">
 
                                 </article>
                             

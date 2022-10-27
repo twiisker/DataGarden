@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DB on Data Garden</title>
+    <link>https://twiisker.github.io/tags/db/</link>
+    <description>Recent content in DB on Data Garden</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 Oct 2022 21:13:37 +0200</lastBuildDate><atom:link href="https://twiisker.github.io/tags/db/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Data Warehouse Design</title>
+      <link>https://twiisker.github.io/post/datawarehouse_design/</link>
+      <pubDate>Thu, 27 Oct 2022 21:13:37 +0200</pubDate>
+      
+      <guid>https://twiisker.github.io/post/datawarehouse_design/</guid>
+      <description>Recap Database Design DW Design Process more or less same steps as DB-Design our topics: Dimensional Fact Model &amp;amp; mUML &amp;amp; starER Conceptual Design Transformation of the semi-formal business requirements specification into a formalized conceptual multidimensional schema
+most produce a graphical multidimensional schema Dimensional Fact Model, UML-based, starER Conceptual DEsign based on business requirement specification schema of operational systems Process model to conceptual DW-Design context definition of measures dimensional hierarchy design summarizability constraints Logical Design Convert the conceptual schema to a logical one with respect to the target data model.</description>
+    </item>
+    
+  </channel>
+</rss>
